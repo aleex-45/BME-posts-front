@@ -1,0 +1,33 @@
+<div>
+  <div class="butons">
+    <div class="categories">
+      @for (category of categories; track category.id) {
+      <p-button
+        class="category-buton"
+        label="{{ category.name }}"
+        [raised]="true"
+        (onClick)="changeCategory(category)"
+      />
+      }
+    </div>
+    <p-button label="new category" (onClick)="showDialog()"/>
+  </div>
+  <div>
+    @if (showPosts) {
+      <app-posts [selectedCategory]="selectedCategory"></app-posts>
+    }
+  </div>
+</div>
+
+@if(visible) {
+  <div class="form">
+    <h3>New Category</h3>
+    <p-floatLabel class="form-object">
+      <input [(ngModel)]="newCategory.name" pInputText id="name" />
+      <label for="name" class="move-label">Name of category</label>
+    </p-floatLabel>
+    <br>
+    <p-button class="form-object" label="Cancel" (onClick)="closeDialog()" />
+    <p-button class="form-object" label="Create" (onClick)="addCategory()" />
+  </div>
+  }
